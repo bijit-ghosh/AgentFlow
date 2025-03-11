@@ -94,8 +94,8 @@ const Hero = () => {
                 <h3 className="text-lg font-bold tracking-wide bg-gradient-to-r from-primary via-flow to-agent bg-clip-text text-transparent animate-pulse-subtle transition-all duration-500 mb-4">
                   <span className="relative z-10">Powering Next-Gen AI Solutions</span>
                   <span className="block text-sm font-normal text-foreground mt-1">
-                    <span className="animate-fade-in-up inline-block px-2 py-1 bg-gradient-to-r from-flow/10 to-agent/10 rounded-md">
-                      "Transform your business operations with AI that delivers real results" 
+                    <span className="animate-fade-in-up inline-block px-3 py-2 bg-gradient-to-r from-flow/20 to-agent/20 rounded-md border border-flow/20 shadow-sm font-semibold text-base">
+                      "Transform your business operations with AI that delivers <span className="font-bold text-flow">real results</span>"
                     </span>
                     with 
                     <span className="relative ml-1 font-extrabold text-lg bg-gradient-to-r from-flow to-agent bg-clip-text text-transparent shadow-sm">
