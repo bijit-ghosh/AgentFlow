@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Features from '@/components/Features';
+import Integrations from '@/components/Integrations';
 import WorkflowDemo from '@/components/WorkflowDemo';
 import Footer from '@/components/Footer';
 import { ArrowRight } from 'lucide-react';
@@ -43,6 +44,7 @@ const Index = () => {
       <main>
         <Hero />
         <Features />
+        <Integrations />
         <WorkflowDemo />
         
         {/* CTA Section */}
