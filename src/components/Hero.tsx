@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Sparkles, Bot, Zap, Shield, TrendingUp, Gauge } from 'lucide-react';
 
@@ -92,7 +93,12 @@ const Hero = () => {
               <div className="inline-block relative">
                 <h3 className="text-lg font-bold tracking-wide bg-gradient-to-r from-primary via-flow to-agent bg-clip-text text-transparent animate-pulse-subtle transition-all duration-500 mb-4">
                   <span className="relative z-10">Powering Next-Gen AI Solutions</span>
-                  <span className="block text-sm font-normal text-foreground mt-1">with <span className="font-bold underline decoration-flow decoration-2 underline-offset-4">Measurable Impact</span></span>
+                  <span className="block text-sm font-normal text-foreground mt-1">with 
+                    <span className="relative ml-1 font-extrabold text-lg bg-gradient-to-r from-flow to-agent bg-clip-text text-transparent shadow-sm">
+                      <span className="absolute -inset-1 bg-gradient-to-r from-flow/20 to-agent/20 blur-sm rounded-lg animate-pulse-subtle"></span>
+                      <span className="relative z-10 underline decoration-flow decoration-4 underline-offset-4">MEASURABLE IMPACT</span>
+                    </span>
+                  </span>
                 </h3>
                 <div className="absolute -inset-1 bg-gradient-to-r from-primary/10 via-flow/10 to-agent/10 rounded-lg blur-sm -z-10"></div>
               </div>
