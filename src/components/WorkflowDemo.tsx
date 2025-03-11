@@ -1,6 +1,6 @@
 
-import React, { useEffect, useRef } from 'react';
-import { Play, PauseCircle, RotateCw, Settings, Database, Bot, Zap, Workflow, ArrowRight } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Play, PauseCircle, RotateCw, Settings, Database, Bot, Zap, Workflow, ArrowRight, Maximize2, Minimize2 } from 'lucide-react';
 
 const nodes = [
   { id: 'node1', type: 'agent', label: 'Data Retrieval Agent', x: 100, y: 150 },
@@ -18,7 +18,9 @@ const connections = [
 
 const WorkflowDemo = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
-  const [isPlaying, setIsPlaying] = React.useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [activePulse, setActivePulse] = useState<number | null>(null);
 
   // Function to draw the connections between nodes
   const drawConnections = () => {
@@ -110,15 +112,20 @@ const WorkflowDemo = () => {
         const randomIndex = Math.floor(Math.random() * connections.length);
         newConnections[randomIndex].active = !newConnections[randomIndex].active;
         
+        // Pulse effect for nodes
+        const randomNodeIndex = Math.floor(Math.random() * nodes.length);
+        setActivePulse(randomNodeIndex);
+        setTimeout(() => setActivePulse(null), 1000);
+        
         // Update node appearances based on connections
-        nodes.forEach(node => {
+        nodes.forEach((node, idx) => {
           const nodeElement = document.getElementById(node.id);
           if (nodeElement) {
             const isActive = connections.some(
               c => (c.from === node.id || c.to === node.id) && c.active
             );
             
-            if (isActive) {
+            if (isActive || idx === randomNodeIndex) {
               nodeElement.classList.add('scale-105', 'shadow-md');
               nodeElement.classList.remove('scale-100', 'shadow');
             } else {
@@ -151,38 +158,52 @@ const WorkflowDemo = () => {
           </p>
         </div>
         
-        <div className="relative max-w-4xl mx-auto">
+        <div className={`relative mx-auto transition-all duration-500 ease-in-out ${isExpanded ? 'max-w-6xl' : 'max-w-4xl'}`}>
           <div className="rounded-2xl border border-border p-8 bg-card shadow-xl overflow-hidden">
             <div className="flex items-center justify-between mb-6 pb-4 border-b">
               <div className="flex items-center space-x-2">
                 <h3 className="font-medium text-lg">Customer Support Workflow</h3>
-                <span className="px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">Active</span>
+                <span className="px-2 py-1 rounded-full text-xs bg-green-100 text-green-800 animate-pulse-subtle">Active</span>
               </div>
               <div className="flex items-center space-x-3">
                 <button 
                   onClick={() => setIsPlaying(!isPlaying)}
                   className="p-2 rounded-lg hover:bg-secondary transition-colors"
+                  aria-label={isPlaying ? "Pause workflow" : "Play workflow"}
                 >
                   {isPlaying ? <PauseCircle size={20} /> : <Play size={20} />}
                 </button>
-                <button className="p-2 rounded-lg hover:bg-secondary transition-colors">
+                <button 
+                  className="p-2 rounded-lg hover:bg-secondary transition-colors"
+                  aria-label="Reset workflow"
+                >
                   <RotateCw size={20} />
                 </button>
-                <button className="p-2 rounded-lg hover:bg-secondary transition-colors">
+                <button 
+                  className="p-2 rounded-lg hover:bg-secondary transition-colors"
+                  aria-label="Settings"
+                >
                   <Settings size={20} />
+                </button>
+                <button 
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="p-2 rounded-lg hover:bg-secondary transition-colors"
+                  aria-label={isExpanded ? "Minimize" : "Maximize"}
+                >
+                  {isExpanded ? <Minimize2 size={20} /> : <Maximize2 size={20} />}
                 </button>
               </div>
             </div>
             
             <div 
               ref={canvasRef} 
-              className="relative h-[400px] bg-secondary/30 rounded-xl p-4"
+              className={`relative bg-secondary/30 rounded-xl p-4 transition-all duration-500 ease-in-out ${isExpanded ? 'h-[500px]' : 'h-[400px]'}`}
             >
-              {nodes.map((node) => (
+              {nodes.map((node, index) => (
                 <div
                   id={node.id}
                   key={node.id}
-                  className={`node node-${node.type} absolute transition-all duration-300 ease-in-out`}
+                  className={`node node-${node.type} absolute transition-all duration-300 ease-in-out ${activePulse === index ? 'animate-pulse-subtle ring-2 ring-offset-2 ring-offset-background' : ''}`}
                   style={{ 
                     left: `${node.x}px`, 
                     top: `${node.y}px`,
@@ -204,7 +225,10 @@ const WorkflowDemo = () => {
                 <Database size={14} />
                 <span>Last updated: Today at 2:30 PM</span>
               </div>
-              <span>Processing time: 1.2s</span>
+              <span className="flex items-center">
+                <Zap size={14} className="mr-1 text-primary animate-pulse-subtle" />
+                Processing time: 1.2s
+              </span>
             </div>
           </div>
           
@@ -214,7 +238,7 @@ const WorkflowDemo = () => {
         </div>
         
         <div className="mt-12 text-center">
-          <a href="/demo" className="button-flow inline-flex items-center">
+          <a href="/demo" className="button-flow inline-flex items-center transform hover:scale-105 transition-transform duration-300">
             Explore More Workflow Templates <ArrowRight className="ml-2 h-4 w-4" />
           </a>
         </div>
