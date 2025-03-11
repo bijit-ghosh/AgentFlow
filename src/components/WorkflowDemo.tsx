@@ -1,26 +1,14 @@
-
+<lov-codelov-code>
 import React, { useEffect, useRef, useState } from 'react';
-import { Play, PauseCircle, RotateCw, Settings, Database, Bot, Zap, Workflow, ArrowRight, Maximize2, Minimize2 } from 'lucide-react';
-
-const nodes = [
-  { id: 'node1', type: 'agent', label: 'Data Retrieval Agent', x: 100, y: 150 },
-  { id: 'node2', type: 'processing', label: 'Data Processing', x: 320, y: 80 },
-  { id: 'node3', type: 'workflow', label: 'Analysis Workflow', x: 320, y: 220 },
-  { id: 'node4', type: 'agent', label: 'Reporting Agent', x: 540, y: 150 }
-];
-
-const connections = [
-  { from: 'node1', to: 'node2', active: true },
-  { from: 'node1', to: 'node3', active: false },
-  { from: 'node2', to: 'node4', active: true },
-  { from: 'node3', to: 'node4', active: true }
-];
+import { Play, PauseCircle, RotateCw, Settings, Maximize2, Minimize2 } from 'lucide-react';
+import { workflowTemplates } from '@/data/workflowTemplates';
 
 const WorkflowDemo = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isExpanded, setIsExpanded] = useState(false);
   const [activePulse, setActivePulse] = useState<number | null>(null);
+  const [selectedTemplate, setSelectedTemplate] = useState(workflowTemplates[0]);
 
   // Function to draw the connections between nodes
   const drawConnections = () => {
@@ -32,7 +20,7 @@ const WorkflowDemo = () => {
     existingLines.forEach(line => line.remove());
 
     // Draw new connections
-    connections.forEach((connection, index) => {
+    selectedTemplate.connections.forEach((connection, index) => {
       const fromNode = document.getElementById(connection.from);
       const toNode = document.getElementById(connection.to);
       
@@ -108,20 +96,20 @@ const WorkflowDemo = () => {
     const interval = setInterval(() => {
       if (isPlaying) {
         // Randomly toggle some connections
-        const newConnections = [...connections];
-        const randomIndex = Math.floor(Math.random() * connections.length);
+        const newConnections = [...selectedTemplate.connections];
+        const randomIndex = Math.floor(Math.random() * selectedTemplate.connections.length);
         newConnections[randomIndex].active = !newConnections[randomIndex].active;
         
         // Pulse effect for nodes
-        const randomNodeIndex = Math.floor(Math.random() * nodes.length);
+        const randomNodeIndex = Math.floor(Math.random() * selectedTemplate.nodes.length);
         setActivePulse(randomNodeIndex);
         setTimeout(() => setActivePulse(null), 1000);
         
         // Update node appearances based on connections
-        nodes.forEach((node, idx) => {
+        selectedTemplate.nodes.forEach((node, idx) => {
           const nodeElement = document.getElementById(node.id);
           if (nodeElement) {
-            const isActive = connections.some(
+            const isActive = selectedTemplate.connections.some(
               c => (c.from === node.id || c.to === node.id) && c.active
             );
             
@@ -143,7 +131,7 @@ const WorkflowDemo = () => {
       window.removeEventListener('resize', handleResize);
       clearInterval(interval);
     };
-  }, [isPlaying]);
+  }, [isPlaying, selectedTemplate]);
   
   return (
     <section id="workflow" className="py-24">
@@ -158,11 +146,30 @@ const WorkflowDemo = () => {
           </p>
         </div>
         
+        {/* Template Selection */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          {workflowTemplates.map((template) => {
+            const Icon = template.icon;
+            return (
+              <button
+                key={template.id}
+                onClick={() => setSelectedTemplate(template)}
+                className={`p-4 rounded-xl border transition-all duration-300 hover:border-primary/50 hover:bg-primary/5 flex flex-col items-center gap-2 ${
+                  selectedTemplate.id === template.id ? 'border-primary bg-primary/10' : 'border-border'
+                }`}
+              >
+                <Icon className={`h-6 w-6 ${selectedTemplate.id === template.id ? 'text-primary' : 'text-muted-foreground'}`} />
+                <span className="text-sm font-medium">{template.title}</span>
+              </button>
+            );
+          })}
+        </div>
+        
         <div className={`relative mx-auto transition-all duration-500 ease-in-out ${isExpanded ? 'max-w-6xl' : 'max-w-4xl'}`}>
           <div className="rounded-2xl border border-border p-8 bg-card shadow-xl overflow-hidden">
             <div className="flex items-center justify-between mb-6 pb-4 border-b">
               <div className="flex items-center space-x-2">
-                <h3 className="font-medium text-lg">Customer Support Workflow</h3>
+                <h3 className="font-medium text-lg">{selectedTemplate.title}</h3>
                 <span className="px-2 py-1 rounded-full text-xs bg-green-100 text-green-800 animate-pulse-subtle">Active</span>
               </div>
               <div className="flex items-center space-x-3">
@@ -199,7 +206,7 @@ const WorkflowDemo = () => {
               ref={canvasRef} 
               className={`relative bg-secondary/30 rounded-xl p-4 transition-all duration-500 ease-in-out ${isExpanded ? 'h-[500px]' : 'h-[400px]'}`}
             >
-              {nodes.map((node, index) => (
+              {selectedTemplate.nodes.map((node, index) => (
                 <div
                   id={node.id}
                   key={node.id}
@@ -221,26 +228,13 @@ const WorkflowDemo = () => {
             </div>
             
             <div className="mt-6 flex items-center justify-between text-sm text-muted-foreground">
-              <div className="flex items-center space-x-1">
-                <Database size={14} />
-                <span>Last updated: Today at 2:30 PM</span>
-              </div>
-              <span className="flex items-center">
-                <Zap size={14} className="mr-1 text-primary animate-pulse-subtle" />
-                Processing time: 1.2s
-              </span>
+              <p className="text-base text-muted-foreground">{selectedTemplate.description}</p>
             </div>
           </div>
           
           {/* Decorative elements */}
           <div className="absolute -top-4 -right-4 w-64 h-64 bg-flow/10 rounded-full filter blur-3xl"></div>
           <div className="absolute -bottom-4 -left-4 w-64 h-64 bg-agent/10 rounded-full filter blur-3xl"></div>
-        </div>
-        
-        <div className="mt-12 text-center">
-          <a href="/demo" className="button-flow inline-flex items-center transform hover:scale-105 transition-transform duration-300">
-            Explore More Workflow Templates <ArrowRight className="ml-2 h-4 w-4" />
-          </a>
         </div>
       </div>
     </section>
