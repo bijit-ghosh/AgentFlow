@@ -1,6 +1,5 @@
-
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, Bot, Zap, Shield } from 'lucide-react';
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -93,17 +92,26 @@ const Hero = () => {
             </div>
             
             <div className="pt-8">
-              <p className="text-sm text-muted-foreground">Trusted by innovative teams worldwide</p>
-              <div className="mt-4 flex flex-wrap items-center gap-8 opacity-70">
-                {[1, 2, 3, 4].map((i) => (
-                  <img 
-                    key={i}
-                    src={`https://placehold.co/100x30/F3F4F6/78716C?text=Company`} 
-                    alt="Company logo" 
-                    className={`h-8 transition-opacity duration-500 ease-in-out ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-                    style={{ transitionDelay: `${i * 100}ms` }}
-                  />
-                ))}
+              <p className="text-sm text-muted-foreground mb-4">Powering Next-Gen AI Solutions</p>
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-full bg-primary/10">
+                    <Bot className="h-5 w-5 text-primary" />
+                  </div>
+                  <span className="text-sm">Advanced AI Agent Orchestration</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-full bg-flow/10">
+                    <Zap className="h-5 w-5 text-flow" />
+                  </div>
+                  <span className="text-sm">Real-time Processing & Automation</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-full bg-agent/10">
+                    <Shield className="h-5 w-5 text-agent" />
+                  </div>
+                  <span className="text-sm">Enterprise-grade Security & Control</span>
+                </div>
               </div>
             </div>
           </div>
