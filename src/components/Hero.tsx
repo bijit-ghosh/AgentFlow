@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Sparkles, Bot, Zap, Shield, TrendingUp, Gauge } from 'lucide-react';
 
@@ -27,7 +26,6 @@ const Hero = () => {
       heroElement.addEventListener('mousemove', handleMouseMove);
     }
     
-    // Simulate image loading
     const timer = setTimeout(() => {
       setIsLoaded(true);
     }, 500);
@@ -45,7 +43,6 @@ const Hero = () => {
       ref={heroRef}
       className="min-h-screen flex flex-col justify-center relative overflow-hidden pt-20"
     >
-      {/* Dynamic background gradient */}
       <div 
         className="absolute inset-0 bg-gradient-to-b from-background via-background to-secondary opacity-50 z-0"
         style={{
@@ -53,7 +50,6 @@ const Hero = () => {
         }}
       ></div>
       
-      {/* Animated decorative elements */}
       <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-flow/10 rounded-full filter blur-3xl animate-pulse-subtle"></div>
       <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-agent/10 rounded-full filter blur-3xl animate-pulse-subtle"></div>
       <div className="absolute top-1/3 right-1/3 w-32 h-32 bg-primary/10 rounded-full filter blur-2xl animate-float"></div>
@@ -93,8 +89,14 @@ const Hero = () => {
             </div>
             
             <div className="pt-8">
-              <p className="text-sm text-muted-foreground mb-4">Powering Next-Gen AI Solutions with Measurable Impact</p>
-              <div className="flex flex-col gap-4">
+              <div className="inline-block relative">
+                <h3 className="text-lg font-bold tracking-wide bg-gradient-to-r from-primary via-flow to-agent bg-clip-text text-transparent animate-pulse-subtle transition-all duration-500 mb-4">
+                  <span className="relative z-10">Powering Next-Gen AI Solutions</span>
+                  <span className="block text-sm font-normal text-foreground mt-1">with <span className="font-bold underline decoration-flow decoration-2 underline-offset-4">Measurable Impact</span></span>
+                </h3>
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary/10 via-flow/10 to-agent/10 rounded-lg blur-sm -z-10"></div>
+              </div>
+              <div className="flex flex-col gap-4 mt-4">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-full bg-primary/10">
                     <Bot className="h-5 w-5 text-primary" />
@@ -136,12 +138,10 @@ const Hero = () => {
                   loading="lazy"
                   onLoad={() => setIsLoaded(true)}
                 />
-                {/* Image overlay with gradient */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-flow/20 to-transparent opacity-60"></div>
               </div>
             </div>
             
-            {/* Enhanced decorative elements for the image */}
             <div className="absolute -top-4 -left-4 w-24 h-24 bg-flow/20 rounded-full filter blur-md animate-pulse-subtle"></div>
             <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-agent/20 rounded-full filter blur-md animate-pulse-subtle"></div>
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-primary/10 rounded-full filter blur-3xl"></div>
