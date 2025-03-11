@@ -1,6 +1,6 @@
-<lov-codelov-code>
+
 import React, { useEffect, useRef, useState } from 'react';
-import { Play, PauseCircle, RotateCw, Settings, Maximize2, Minimize2 } from 'lucide-react';
+import { Play, PauseCircle, RotateCw, Settings, Maximize2, Minimize2, Bot, Zap, Workflow } from 'lucide-react';
 import { workflowTemplates } from '@/data/workflowTemplates';
 
 const WorkflowDemo = () => {
