@@ -53,10 +53,13 @@ const Index = () => {
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="font-bold mb-6">
                 Ready to Transform Your 
-                <span className="text-gradient"> AI Operations?</span>
+                <span className="text-gradient"> AI Agent Operations?</span>
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
                 Start building your first agent workflow in minutes. No credit card required.
+              </p>
+              <p className="text-xl font-medium text-primary mb-8 animate-pulse-subtle">
+                Unlock the full potential of AI agents working together!
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <a href="/signup" className="button-primary inline-flex items-center justify-center">
