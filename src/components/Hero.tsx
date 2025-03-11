@@ -1,5 +1,6 @@
+
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Sparkles, Bot, Zap, Shield } from 'lucide-react';
+import { ArrowRight, Sparkles, Bot, Zap, Shield, TrendingUp, Gauge } from 'lucide-react';
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -92,25 +93,31 @@ const Hero = () => {
             </div>
             
             <div className="pt-8">
-              <p className="text-sm text-muted-foreground mb-4">Powering Next-Gen AI Solutions</p>
+              <p className="text-sm text-muted-foreground mb-4">Powering Next-Gen AI Solutions with Measurable Impact</p>
               <div className="flex flex-col gap-4">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-full bg-primary/10">
                     <Bot className="h-5 w-5 text-primary" />
                   </div>
-                  <span className="text-sm">Advanced AI Agent Orchestration</span>
+                  <span className="text-sm">Advanced AI Agent Orchestration <span className="font-medium text-primary">• 87% faster task completion</span></span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-full bg-flow/10">
                     <Zap className="h-5 w-5 text-flow" />
                   </div>
-                  <span className="text-sm">Real-time Processing & Automation</span>
+                  <span className="text-sm">Real-time Processing & Automation <span className="font-medium text-flow">• 63% cost reduction</span></span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-full bg-agent/10">
                     <Shield className="h-5 w-5 text-agent" />
                   </div>
-                  <span className="text-sm">Enterprise-grade Security & Control</span>
+                  <span className="text-sm">Enterprise-grade Security & Control <span className="font-medium text-agent">• 99.9% uptime</span></span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-full bg-primary/10">
+                    <TrendingUp className="h-5 w-5 text-primary" />
+                  </div>
+                  <span className="text-sm">ROI & Performance Tracking <span className="font-medium text-primary">• 4.2x average ROI</span></span>
                 </div>
               </div>
             </div>
