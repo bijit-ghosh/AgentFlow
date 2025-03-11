@@ -94,13 +94,15 @@ const Hero = () => {
                 <h3 className="text-lg font-bold tracking-wide bg-gradient-to-r from-primary via-flow to-agent bg-clip-text text-transparent animate-pulse-subtle transition-all duration-500 mb-4">
                   <span className="relative z-10">Powering Next-Gen AI Solutions</span>
                   <span className="block animate-fade-in-up mt-1">
-                    <span className="inline-flex px-5 py-3 bg-gradient-to-r from-flow/30 to-agent/30 rounded-lg border-2 border-flow/30 shadow-lg font-bold text-lg">
-                      Transform your business operations with AI that delivers 
-                      <span className="mx-2 font-extrabold text-flow underline decoration-2 underline-offset-4">REAL RESULTS</span>
-                      with
-                      <span className="relative ml-2 font-extrabold text-xl bg-gradient-to-r from-flow to-agent bg-clip-text text-transparent">
-                        <span className="absolute -inset-1 bg-gradient-to-r from-flow/30 to-agent/30 blur-sm rounded-lg animate-pulse-subtle"></span>
-                        <span className="relative z-10 uppercase underline decoration-flow decoration-4 underline-offset-4">MEASURABLE IMPACT</span>
+                    <span className="inline-flex px-6 py-4 bg-gradient-to-r from-flow/40 to-agent/40 rounded-lg border-3 border-flow/40 shadow-xl font-extrabold text-xl">
+                      <span className="bg-gradient-to-r from-primary to-flow bg-clip-text text-transparent">
+                        Transform your business operations with AI that delivers 
+                        <span className="mx-2 font-black text-flow uppercase">REAL RESULTS</span>
+                        with
+                        <span className="relative ml-2 font-black text-2xl">
+                          <span className="absolute -inset-1 bg-gradient-to-r from-flow/40 to-agent/40 blur-sm rounded-lg animate-pulse-subtle"></span>
+                          <span className="relative z-10 uppercase bg-gradient-to-r from-flow to-agent bg-clip-text text-transparent underline decoration-flow decoration-4 underline-offset-4">MEASURABLE IMPACT</span>
+                        </span>
                       </span>
                     </span>
                   </span>
