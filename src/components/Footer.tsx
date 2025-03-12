@@ -17,7 +17,7 @@ const Footer = () => {
               Build, manage, and orchestrate intelligent AI agents for your business.
             </p>
             <div className="flex space-x-4">
-              <a href="https://github.com/AgentOps-AI/agentops" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub">
                 <Github size={20} />
               </a>
               <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Twitter">
