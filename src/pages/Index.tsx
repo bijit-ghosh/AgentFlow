@@ -1,8 +1,8 @@
-
 import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Features from '@/components/Features';
+import AgentWatchFeatures from '@/components/AgentWatchFeatures';
 import Integrations from '@/components/Integrations';
 import WorkflowDemo from '@/components/WorkflowDemo';
 import Footer from '@/components/Footer';
@@ -44,6 +44,7 @@ const Index = () => {
       <main>
         <Hero />
         <Features />
+        <AgentWatchFeatures />
         <Integrations />
         <WorkflowDemo />
         
