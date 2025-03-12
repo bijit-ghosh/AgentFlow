@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Github, Twitter, Linkedin, Mail } from 'lucide-react';
 
@@ -18,7 +17,7 @@ const Footer = () => {
               Build, manage, and orchestrate intelligent AI agents for your business.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub">
+              <a href="https://github.com/AgentOps-AI/agentops" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
                 <Github size={20} />
               </a>
               <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Twitter">
