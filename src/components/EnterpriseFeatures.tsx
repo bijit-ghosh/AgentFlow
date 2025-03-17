@@ -1,6 +1,14 @@
 
 import React from 'react';
-import { Shield, Eye, Lock, Database, CheckCircle2 } from 'lucide-react';
+import { Shield, Eye, Lock, Database, CheckCircle2, Building2, Globe, BarChart, FileCheck } from 'lucide-react';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
+import { Card, CardContent } from "@/components/ui/card";
 
 const securityFeatures = [
   {
@@ -32,6 +40,33 @@ const trustPoints = [
   "Regular security audits"
 ];
 
+const testimonials = [
+  {
+    quote: "AgentFlow's enterprise security features have been instrumental in our AI transformation journey, giving us confidence to deploy at scale.",
+    author: "Sarah Chen",
+    title: "CTO, Global Financial Services",
+    logo: <Building2 className="h-10 w-10 text-primary" />
+  },
+  {
+    quote: "The transparency and audit capabilities have helped us meet regulatory requirements while accelerating our AI adoption.",
+    author: "Michael Rodriguez",
+    title: "VP of Technology, Healthcare Systems",
+    logo: <Globe className="h-10 w-10 text-primary" />
+  },
+  {
+    quote: "We've reduced our compliance overhead by 60% while improving our security posture with AgentFlow's enterprise platform.",
+    author: "David Patel",
+    title: "CISO, Retail Technologies",
+    logo: <BarChart className="h-10 w-10 text-primary" />
+  },
+  {
+    quote: "The detailed audit logs and compliance features have made our security team's job significantly easier during regulatory reviews.",
+    author: "Emily Thompson",
+    title: "Head of Compliance, Insurance Group",
+    logo: <FileCheck className="h-10 w-10 text-primary" />
+  }
+];
+
 const EnterpriseFeatures = () => {
   return (
     <section className="py-24 bg-gradient-to-r from-background to-secondary/20 relative overflow-hidden">
@@ -57,33 +92,55 @@ const EnterpriseFeatures = () => {
           </p>
         </div>
 
-        {/* Transparency Demo with enhanced visual design */}
-        <div className="mb-20 rounded-xl overflow-hidden border border-border shadow-xl transform hover:scale-[1.01] transition-all duration-500">
-          <div className="bg-card p-8">
-            <h3 className="text-2xl font-semibold mb-3 flex items-center">
-              <Eye className="mr-3 text-flow h-6 w-6" />
-              Total Transparency
-            </h3>
-            <p className="text-muted-foreground mb-6">See the work — trace every action that AI takes in real-time with our comprehensive audit logs</p>
-          </div>
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80 pointer-events-none"></div>
-            <img 
-              src="/lovable-uploads/49392914-8a53-434a-bb59-db3e9851998c.png" 
-              alt="Agent activity log" 
-              className="w-full"
-            />
+        {/* Enterprise Testimonials Carousel - replacing the old demo section */}
+        <div className="mb-20">
+          <div className="mb-10 text-center">
+            <h3 className="text-2xl font-semibold mb-4">Trusted by Industry Leaders</h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              See why enterprises across industries rely on our secure and transparent AI agent platform
+            </p>
           </div>
           
-          <div className="bg-card p-6 border-t border-border">
-            <div className="flex flex-wrap gap-4">
-              {trustPoints.map((point, index) => (
-                <div key={index} className="flex items-center text-sm px-3 py-1.5 bg-background rounded-full">
-                  <CheckCircle2 className="h-4 w-4 text-agent mr-2" />
-                  <span>{point}</span>
-                </div>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="mx-auto max-w-5xl"
+          >
+            <CarouselContent>
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/2 pl-4">
+                  <Card className="border border-border bg-card/60 backdrop-blur-sm hover:shadow-xl transition-all duration-500 h-full">
+                    <CardContent className="p-8 flex flex-col h-full">
+                      <div className="bg-primary/10 p-4 rounded-full w-fit mb-6">
+                        {testimonial.logo}
+                      </div>
+                      <blockquote className="text-lg italic mb-6 flex-grow">
+                        "{testimonial.quote}"
+                      </blockquote>
+                      <div className="mt-auto">
+                        <div className="font-semibold">{testimonial.author}</div>
+                        <div className="text-sm text-muted-foreground">{testimonial.title}</div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
               ))}
+            </CarouselContent>
+            <div className="hidden md:flex justify-end gap-2 mt-6">
+              <CarouselPrevious className="relative inset-auto -left-0 top-0 translate-y-0 bg-background/80 backdrop-blur-sm" />
+              <CarouselNext className="relative inset-auto -right-0 top-0 translate-y-0 bg-background/80 backdrop-blur-sm" />
             </div>
+          </Carousel>
+          
+          <div className="flex flex-wrap gap-4 justify-center mt-10">
+            {trustPoints.map((point, index) => (
+              <div key={index} className="flex items-center text-sm px-3 py-1.5 bg-background/80 backdrop-blur-sm rounded-full border border-border">
+                <CheckCircle2 className="h-4 w-4 text-agent mr-2" />
+                <span>{point}</span>
+              </div>
+            ))}
           </div>
         </div>
 
