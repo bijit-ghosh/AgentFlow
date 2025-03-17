@@ -92,15 +92,8 @@ const EnterpriseFeatures = () => {
           </p>
         </div>
 
-        {/* Enterprise Testimonials Carousel - replacing the old demo section */}
+        {/* Testimonials Carousel */}
         <div className="mb-20">
-          <div className="mb-10 text-center">
-            <h3 className="text-2xl font-semibold mb-4">Trusted by Industry Leaders</h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              See why enterprises across industries rely on our secure and transparent AI agent platform
-            </p>
-          </div>
-          
           <Carousel
             opts={{
               align: "start",
