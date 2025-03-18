@@ -5,7 +5,7 @@ import Features from '@/components/Features';
 import AgentWatchFeatures from '@/components/AgentWatchFeatures';
 import Integrations from '@/components/Integrations';
 import WorkflowDemo from '@/components/WorkflowDemo';
-import EnterpriseFeatures from '@/components/EnterpriseFeatures';
+import OpenInferenceFeatures from '@/components/OpenInferenceFeatures';
 import Footer from '@/components/Footer';
 import { ArrowRight } from 'lucide-react';
 
@@ -48,7 +48,7 @@ const Index = () => {
         <AgentWatchFeatures />
         <Integrations />
         <WorkflowDemo />
-        <EnterpriseFeatures />
+        <OpenInferenceFeatures />
         
         {/* CTA Section */}
         <section id="cta" className="py-24 bg-gradient-to-r from-primary/5 to-flow/5">
